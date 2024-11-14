@@ -16,3 +16,5 @@ El conjunto de datos incluye variables como edad, hipertensión, enfermedades ca
 
 ## Uso
 Al ejecutar este modelo, los profesionales de la salud e investigadores pueden identificar a los pacientes con mayor probabilidad de experimentar un accidente cerebrovascular, facilitando acciones preventivas y contribuyendo a mejores resultados en la salud.
+
+
