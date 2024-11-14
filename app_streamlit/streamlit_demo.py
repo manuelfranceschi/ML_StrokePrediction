@@ -3,16 +3,34 @@ import streamlit as st
 import pickle
 import pandas as pd
 import numpy as np
+import sklearn.metrics
 # Dataframe y modelo 
 df = pd.read_csv('../data/test/test.csv')
 model = pickle.load(open('../models/finished_model.pkl','rb'))
 
 #Titulo e imagen
-st.image("../data/dataset-cover.jpg")
+st.image("../data/dataset-cover.jpg", use_container_width=True)
 st.title('Predecir si una persona puede sufrir de accidentes cerebrovasculares')
-st.markdown("""
-            ***Primera aproximación del modelo***
+st.markdown(""" 
+            ## Caso de uso
+Personas que tengan dudas sobre su estado actual y que crean que puedan ser propensas a tener un accidente cerebrovascular, y mediante esta rápida evaluación, haciendo uso de un modelo de machine learning de clasificación binaria, pueda saber si estan corriendo riesgo de sufrir este tipo de accidentes y trabajar con su equipo de atención médica y evaluar estos riesgos, que la mayoría son prevenibles o tratables.
+
+## Parametros
+Este modelo toma en cuenta las siguientes carácteristicas del paciente:
+* Edad
+* Si presenta o ha presentado alguna vez una cardiopatía
+* Si sufre de diabetes, prediabético o no.
+* Si es fumador o no.
+* Si bebe alcohol.
+* Si sufre de artritis.
+* Si sufre de nefropatía.
+* Si sufre o ha sufrido de depresión
             """)
+st.markdown("***Muchas condiciones médicas comunes pueden aumentar la probabilidad de tener un accidente cerebrovascular***")
+st.markdown("""
+            ## Primera aproximación del modelo 
+            """)
+
 # Variables y funciones
 def age_to_category(age_str): 
     age = int(age_input)
@@ -28,41 +46,39 @@ def age_to_category(age_str):
 # Botones y demás
 # Edad
 age_input = st.text_input("Introduce tu edad:", placeholder= '22')
-
 if age_input.isdigit():
     st.write("El número es:", int(age_input))
-
 else:
     st.write("Por favor, introduce un número válido.")
 
-# Ataques al corazón alguna vez 0:1
+# cardiopatía 0:1
 opt_heart_attack = {"Si": 1, "No": 0}
 heart_attack = st.radio(
-    "Has tenido ataques al corazón?",
+    "¿Has tenido alguna cardiopatía?",
     opt_heart_attack.keys(),
 )
 
 # Tiene diabetes - varios rangos
 opt_diabetes = {
     "No": 0,
-    "Yes, but only during pregnancy (female)": 1,
-    "No, pre-diabetes or borderline diabetes": 2,
-    "Yes": 3
+    "Si, pero solo durante el embarazo (mujeres)": 1,
+    "Prediabetes": 2,
+    "Si": 3
 }
 diabetes = st.radio(
-    "Tienes diabetes?",
+    "¿Tienes diabetes?",
     opt_diabetes.keys()
 )
 
 # Es fumador - varios rangos
 opt_smoker= {
-    "Never smoked": 0,
-    "Former smoker": 1,
-    "Current smoker - now smokes some days": 2,
-    "Current smoker - now smokes every day": 3
+    "Nunca he fumado": 0,
+    "Soy exfumador": 1,
+    "Fumo ocasionalmente (algunos días)": 2,
+    "Fumo diariamente": 3
 }
 smoker = st.radio(
-    "Eres fumador?",
+    "¿Eres fumador?",
     opt_smoker.keys()
 )
 
@@ -76,20 +92,20 @@ drinker = st.radio(
 # Tiene arthritis 0:1
 opt_arthritis = {"Si": 1, "No": 0}
 arthritis = st.radio(
-    "¿Has tenido artritis?",
+    "¿Sufres de artritis?",
     opt_arthritis.keys()
 )
 
 # Tiene kidney disease 0:1
 opt_kidney_disease = {"Si": 1, "No": 0}
 kidney_disease = st.radio(
-    "¿Has sufrido de alguna enfermedad del colón?",
+    "¿Sufres de nefropatía (enfermedad renal)?",
     opt_kidney_disease.keys()
 )
 
 opt_depressive_disorder = {"Si": 1, "No": 0}
 dep_disorder = st.radio(
-    "¿Has sufrido de depresión?",
+    "¿Has sufrido o sufres de depresión?",
     opt_depressive_disorder.keys()
 )
 if st.button("Realizar Predicción"):
@@ -108,13 +124,14 @@ if st.button("Realizar Predicción"):
     # Convertir el diccionario a un DataFrame de una fila para el modelo
     df_parametros = pd.DataFrame([params])
 
-    st.write('Esto es lo que le pasaremos al modelo para trabajar')
+    st.write('Esto es lo que le pasaremos al modelo para hacer la predicción')
     st.dataframe(df_parametros, use_container_width=True)
 
     # Mostrar el resultado de la predicción
     pred = model.predict(df_parametros)
+
     st.subheader("Resultado: ")
     if pred == 0:
         st.success("No eres propenso a sufrir accidentes cerebrovasculares, por lo que puedes estar tranquilo!",icon="✅")
     else:
-        st.error('Tienes indicios de poder sufrir un accidente cerebrovascular, te recomendamos acudas a tu médico de cabecera', icon="🚨")
+        st.warning('Tienes indicios de poder sufrir un accidente cerebrovascular, te recomendamos acudas a tu médico de cabecera', icon="🚨")
