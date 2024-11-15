@@ -3,14 +3,14 @@ import streamlit as st
 import pickle
 import pandas as pd
 import numpy as np
-import sklearn.metrics
+import sklearn.metrics as metrics
 # Dataframe y modelo 
 df = pd.read_csv('../data/test/test.csv')
 model = pickle.load(open('../models/finished_model.pkl','rb'))
 
 #Titulo e imagen
-st.image("../data/dataset-cover.jpg", use_container_width=True)
 st.title('Predecir si una persona puede sufrir de accidentes cerebrovasculares')
+st.image("../data/dataset-cover.jpg", use_container_width=True)
 st.markdown(""" 
             ## Caso de uso
 Personas que tengan dudas sobre su estado actual y que crean que puedan ser propensas a tener un accidente cerebrovascular, y mediante esta rápida evaluación, haciendo uso de un modelo de machine learning de clasificación binaria, pueda saber si estan corriendo riesgo de sufrir este tipo de accidentes y trabajar con su equipo de atención médica y evaluar estos riesgos, que la mayoría son prevenibles o tratables.
@@ -135,3 +135,20 @@ if st.button("Realizar Predicción"):
         st.success("No eres propenso a sufrir accidentes cerebrovasculares, por lo que puedes estar tranquilo!",icon="✅")
     else:
         st.warning('Tienes indicios de poder sufrir un accidente cerebrovascular, te recomendamos acudas a tu médico de cabecera', icon="🚨")
+
+    st.write('Métricas de test')
+
+    X = df[['AgeGroup', 'HadHeartAttack', 'diabetesGroup','SmokerGroup', 'AlcoholDrinkers', 'HadArthritis','HadKidneyDisease', 'HadDepressiveDisorder']]
+    y = df['HadStroke']
+    y_pred = model.predict(X)
+
+    df_test = pd.DataFrame({"Real": y, 
+                        "Pred": y_pred})
+    st.dataframe(df_test)
+
+    st.write(f'accuracy_score', metrics.accuracy_score(y,y_pred))
+    st.write(f'precision_score', metrics.precision_score(y,y_pred))
+    st.write(f'recall_score', metrics.recall_score(y,y_pred))
+
+
+
