@@ -150,5 +150,23 @@ if st.button("Realizar Predicción"):
     st.write(f'precision_score', metrics.precision_score(y,y_pred))
     st.write(f'recall_score', metrics.recall_score(y,y_pred))
 
-
+"""
+Feedback: 
+1. Sección de información: Ser mucho más claro al principio del modelo. Es decir, incitar
+al usuario a usar la aplicación sin ser tan explicativo. A las malas añadir info adicional
+debajo de cada una de las variables. o también añadir una sección de 'Quieres saber
+como funciona este modelo?' O UN BOTÓN ? AL LADO DE LAS VARIABLES A INTRODUCIR
+2. Nombre del modelo: lo mismo, llamar al usuario a usarlo. ver ejemplos de landingpage
+de pandas o de numpy, pyplot etc.
+3. Métricas del test: bien, pero explicarlas en vez de enseñarlas. En el propio FAQ traducir
+las metricas, por ejemplo con el recall 'El 60% de los pacientes te los predecirá bien'
+4. Resultados: Utilizar el predict_proba para añadir varias posibilidades de predicción.
+Ejemplo: 20% de probabilidad: Eres poco propenso a sufrir de este tipo de accidentes
+Ejemplo: 40% de probabilidad: No eres propenso a sufrir este tipo de accidentes, aunque 
+recomendamos acudas a tu equipo médico para comprobarlo.
+5. Propuesta de valor: la herramienta va dedicada a páginas web de clinicas, hospitales y
+aseguradoras, incitando a la consulta médica siempre y cuando haya probabilidad de accidente
+Otro modelo de redes neuronales para predecir si el usuario puede tener accidentes neuronales
+orientado a predicciones médicas que ayuden al médico a tomar una decisión
+"""
 
