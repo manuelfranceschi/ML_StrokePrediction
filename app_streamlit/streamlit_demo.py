@@ -6,7 +6,7 @@ import numpy as np
 import sklearn.metrics as metrics
 # Dataframe y modelo 
 df = pd.read_csv('../data/test/test.csv')
-model = pickle.load(open('../models/finished_model.pkl','rb'))
+model = pickle.load(open('../models/trained_model_2.pkl','rb'))
 
 #Titulo e imagen
 st.title('Predecir si una persona puede sufrir de accidentes cerebrovasculares')
@@ -168,5 +168,9 @@ recomendamos acudas a tu equipo médico para comprobarlo.
 aseguradoras, incitando a la consulta médica siempre y cuando haya probabilidad de accidente
 Otro modelo de redes neuronales para predecir si el usuario puede tener accidentes neuronales
 orientado a predicciones médicas que ayuden al médico a tomar una decisión
+
+1era idea: Fondo de un paciente hablando con un medico, titulo 'La prevención de accidentes cerebrovasculares pueden ser sencillas de evitar', 
+un boton de 'haz un primer diagnostico ahora', un footer de aviso 'este cuestionario no deberia tomarse como una recomendación médica más allá
+de una primera aproximación de si estas en riesgo de sufrir este tipo de accidentes.
 """
 
