@@ -1,5 +1,5 @@
-# Modelo predictivo de accidentes cerebrovasculares 
-Modelo de Predicción de Accidentes Cerebrovasculares
+# Accidentes cerebrovasculares
+Modelo de machine learning
 
 Este proyecto tiene como objetivo predecir el riesgo de accidente cerebrovascular en pacientes utilizando técnicas de machine learning sobre datos de salud. La predicción temprana del riesgo de accidente cerebrovascular es crucial para implementar medidas preventivas, mejorar los resultados de los pacientes y optimizar los recursos de salud.
 
@@ -16,5 +16,3 @@ El conjunto de datos incluye variables como edad, hipertensión, enfermedades ca
 
 ## Uso
 Al ejecutar este modelo, los profesionales de la salud e investigadores pueden identificar a los pacientes con mayor probabilidad de experimentar un accidente cerebrovascular, facilitando acciones preventivas y contribuyendo a mejores resultados en la salud.
-
-
