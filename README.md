@@ -31,5 +31,5 @@ Al ejecutar este modelo, los usuarios de páginas de seguros médicos y clínica
 * Matplotlib y Seaborn
 * Scikit-learn
 * XGBoost
-* Streamlit
+* Streamlit2
 
