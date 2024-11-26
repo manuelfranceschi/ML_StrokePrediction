@@ -57,7 +57,7 @@ with tab1:
 
     if st.session_state.current_view == "main":
         st.markdown('<div class="title">Prevenir accidentes cerebrovasculares es posible</div>', unsafe_allow_html=True)
-        st.image('background_image.jpeg', use_container_width= True)      
+        st.image(os.path.join(os.path.dirname(__file__), 'background_image.jpeg'), use_container_width= True)      
         if st.button("Haz un primer diagnóstico ahora"):
             switch_view("diagnosis")
 
