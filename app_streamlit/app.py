@@ -39,7 +39,9 @@ def age_to_category(age_str):
     return age_category
 
 df = pd.read_csv(os.path.join(os.path.dirname(__file__), "test.csv"))
-model = pickle.load(open('final_model_rf.pkl','rb'))
+
+model_path = os.path.join(os.path.dirname(__file__), "final_model_rf.pkl")
+model = pickle.load(open(model_path,'rb'))
 # Streamlit 
 
 st.logo(
