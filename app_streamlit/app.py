@@ -3,6 +3,7 @@ import pickle
 import pandas as pd
 import numpy as np
 import sklearn.metrics as metrics
+import os
 
 # Configurar página y CSS
 st.set_page_config(
@@ -37,12 +38,12 @@ def age_to_category(age_str):
         age_category = 4
     return age_category
 
-df = pd.read_csv('test.csv')
+df = pd.read_csv(os.path.join(os.path.dirname(__file__), "test.csv"))
 model = pickle.load(open('final_model_rf.pkl','rb'))
 # Streamlit 
 
 st.logo(
-    "medicine_logo.png", size= 'large'
+    os.path.join(os.path.dirname(__file__), "medicine_logo.png"), size= 'large'
     #link="httpshttp://localhost:8502/#predecir-si-una-persona-puede-sufrir-de-accidentes-cerebrovascularesstreamlit.io/gallery",
 )
 
@@ -63,7 +64,7 @@ with tab1:
             switch_view("main")
 
         st.title('Asegura tu salud. Haz este rápido test para saber si te encuentras en riesgo')
-        st.image("dataset-cover.jpg", use_container_width=True)
+        st.image(os.path.join(os.path.dirname(__file__), "dataset-cover.jpg"), use_container_width=True)
 
         # Edad
         age_input = st.text_input("Introduce tu edad:", placeholder= '22')
