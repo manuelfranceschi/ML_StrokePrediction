@@ -147,8 +147,8 @@ with tab1:
             # Convertir el diccionario a un DataFrame para el modelo
             df_parametros = pd.DataFrame([params])
 
-            st.write('Esto es lo que le pasaremos al modelo para hacer la predicción')
-            st.dataframe(df_parametros, use_container_width=True)
+            #st.write('Esto es lo que le pasaremos al modelo para hacer la predicción')
+            #st.dataframe(df_parametros, use_container_width=True)
             st.subheader("Resultado: ")
             # Mostrar el resultado de la predicción
             prob = float(model.predict_proba(df_parametros)[0][1])
