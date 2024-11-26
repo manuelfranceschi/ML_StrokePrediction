@@ -37,12 +37,12 @@ def age_to_category(age_str):
         age_category = 4
     return age_category
 
-df = pd.read_csv(r'../data/test/test.csv')
-model = pickle.load(open(r'../models/final_model_rf.pkl','rb'))
+df = pd.read_csv('test.csv')
+model = pickle.load(open('final_model_rf.pkl','rb'))
 # Streamlit 
 
 st.logo(
-    "../data/medicine_logo.png", size= 'large'
+    "medicine_logo.png", size= 'large'
     #link="httpshttp://localhost:8502/#predecir-si-una-persona-puede-sufrir-de-accidentes-cerebrovascularesstreamlit.io/gallery",
 )
 
@@ -54,7 +54,7 @@ with tab1:
 
     if st.session_state.current_view == "main":
         st.markdown('<div class="title">Prevenir accidentes cerebrovasculares es posible</div>', unsafe_allow_html=True)
-        st.image(r'../data/background_image.jpeg', use_container_width= True)      
+        st.image('background_image.jpeg', use_container_width= True)      
         if st.button("Haz un primer diagnóstico ahora"):
             switch_view("diagnosis")
 
@@ -63,7 +63,7 @@ with tab1:
             switch_view("main")
 
         st.title('Asegura tu salud. Haz este rápido test para saber si te encuentras en riesgo')
-        st.image(r"../data/dataset-cover.jpg", use_container_width=True)
+        st.image("dataset-cover.jpg", use_container_width=True)
 
         # Edad
         age_input = st.text_input("Introduce tu edad:", placeholder= '22')
