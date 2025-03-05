@@ -4,6 +4,8 @@ Modelo de machine learning
 
 Este proyecto tiene como objetivo predecir el riesgo de accidente cerebrovascular en asegurados utilizando técnicas de machine learning sobre datos de salud. La predicción temprana del riesgo de accidente cerebrovascular es crucial para implementar medidas preventivas, mejorar los resultados de los pacientes y optimizar los recursos de salud.
 
+![Puedes probarlo aquí](https://mlstrokeprediction-manuelfranceschi.streamlit.app/)
+
 ## Propósito
 La predicción del riesgo de accidente cerebrovascular ayuda a las aseguradoras a:
 
